@@ -1,0 +1,103 @@
+body {
+  background: #000;
+}
+
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+  
+.touch-line {
+  width: 2px;
+  height: 500px;
+  background: lighten(#FFF,50);
+  position: absolute;
+  bottom: calc(50% + 30px);
+  transform: scaleY(0);
+  transition: all 3s;
+  transform-origin: bottom;
+  &.touch-line--active {
+    animation: anim-line 1.5s forwards;
+    animation-delay: 0.5s;
+  }
+}
+
+@keyframes anim-line {
+	0% {
+		transform: scaleY(0);
+	}
+	100% {
+		transform: scaleY(1);
+	}
+}
+/* Ivana */
+.touch-btn {
+  display: flex;
+  align-items: center;
+  transform: scale(3);
+  justify-content: center;
+  border: 2px solid lighten(#FFF,50);
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  
+  svg {
+    width: 20px;
+    height: auto;
+    path {
+      fill: #fff;
+    }
+  }
+}
+
+.touch-btn::before {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -35px 0 0 -35px;
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	content: '';
+	opacity: 0;
+	pointer-events: none;
+}
+
+
+.touch-btn::after {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -35px 0 0 -35px;
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	content: '';
+	opacity: 0;
+	pointer-events: none;
+}
+
+.touch-btn::after {
+  box-shadow: inset 0 0 0 2px rgba(111,148,182,0.3);
+}
+
+.touch-btn.touch-btn--active::after {
+	animation: anim-effect-marko 1.5s forwards;
+}
+
+@keyframes anim-effect-marko {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		box-shadow: inset 0 0 0 35px rgba(#fff,0.1);
+		opacity: 1;
+	}
+	100% {
+		box-shadow: inset 0 0 0 35px rgba(#fff,0.1);
+		opacity: 0;
+		transform: scale3d(1.1, 1.1, 1);
+	}
+}
