@@ -4,6 +4,9 @@ import './App.scss';
 import socketIOClient from "socket.io-client";
 import classNames from 'classnames';
 
+
+var ESCAPE_KEY = 65;
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -14,10 +17,25 @@ class App extends Component {
     };
   }
 
+
+
+  _handleKeyDown = (event) => {
+    switch (event.keyCode) {
+      case ESCAPE_KEY:
+        this.touchButton();
+        break;
+      default:
+        break;
+    }
+  };
+
+
   componentDidMount() {
     const { endpoint } = this.state;
-    const socket = socketIOClient(endpoint);
-    socket.on("FromAPI", data => this.setState({ response: data }));
+    //const socket = socketIOClient(endpoint);
+    //asocket.on("FromAPI", data => this.setState({ response: data }));
+
+    document.addEventListener("keydown", this._handleKeyDown);
   }
 
   touchButton = () => {
@@ -53,7 +71,7 @@ class App extends Component {
               focusable="false"
               data-prefix="fal"
               data-icon="angle-double-right"
-              class="svg-inline--fa fa-angle-double-right fa-w-10"
+              className="svg-inline--fa fa-angle-double-right fa-w-10"
               role="img"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 320 512">
